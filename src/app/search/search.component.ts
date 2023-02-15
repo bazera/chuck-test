@@ -11,7 +11,7 @@ import {
   switchMap,
 } from 'rxjs';
 import { ChuckApiService } from '../chuck-api.service';
-import { QueryResult } from '../chuck.model';
+import { Joke, QueryResult } from '../chuck.model';
 
 @Component({
   selector: 'app-search',
@@ -35,6 +35,12 @@ export class SearchComponent implements OnInit {
     };
 
     return of(empty);
+  }
+
+  addToList(joke: Joke) {
+    this.apiService
+      .saveJoke(joke)
+      .subscribe(() => this.toastr.success('Joke has been added'));
   }
 
   ngOnInit(): void {

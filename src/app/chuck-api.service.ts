@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Joke, QueryResult } from './chuck.model';
 import { API_BASE } from './tokens';
 
@@ -35,5 +36,21 @@ export class ChuckApiService {
     return this.http.get<QueryResult>(`${this.apiBase}/search`, {
       params,
     });
+  }
+
+  getJokeList() {
+    return this.http.get<Joke[]>(`${environment.jsonServerBase}/jokes`);
+  }
+
+  saveJoke(joke: Joke) {
+    return this.http.post(`${environment.jsonServerBase}/jokes`, joke);
+  }
+
+  editJoke(id: string, joke: Joke) {
+    return this.http.patch(`${environment.jsonServerBase}/jokes/${id}`, joke);
+  }
+
+  deleteJoke(id: string) {
+    return this.http.delete(`${environment.jsonServerBase}/jokes/${id}`);
   }
 }

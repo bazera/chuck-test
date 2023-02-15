@@ -12,13 +12,19 @@ import { Joke } from '../chuck.model';
   styleUrls: ['./joke.component.scss'],
 })
 export class JokeComponent implements OnInit {
+  joke$: Observable<Joke | null> | undefined;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private apiService: ChuckApiService,
     private toastr: ToastrService
   ) {}
 
-  joke$: Observable<Joke | null> | undefined;
+  addToList(joke: Joke) {
+    this.apiService
+      .saveJoke(joke)
+      .subscribe(() => this.toastr.success('Joke has been added'));
+  }
 
   ngOnInit(): void {
     const category = this.activatedRoute.snapshot.paramMap.get('category');

@@ -1,4 +1,9 @@
-<ng-container *ngIf="joke$ | async as joke">
-  <p>{{ joke.value }}</p>
-  <span>Created at: {{ joke.created_at | date : "shortDate" }}</span>
+<ng-container *ngIf="permissions?.canRandomJoke; else noPermission">
+  <ng-container *ngIf="joke$ | async as joke">
+    <p>{{ joke.value }}</p>
+    <span>Created at: {{ joke.created_at | date : "shortDate" }}</span>
+  </ng-container>
 </ng-container>
+<ng-template #noPermission>
+  You don't have permission to view random joke
+</ng-template>

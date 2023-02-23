@@ -1,1 +1,4 @@
 <router-outlet></router-outlet>
+<div class="overlay" *ngIf="loading$ | async">
+  <span>Loading...</span>
+</div>

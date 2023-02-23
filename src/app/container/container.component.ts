@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth.service';
 import { ChuckApiService } from '../chuck-api.service';
 
 @Component({
@@ -8,9 +10,13 @@ import { ChuckApiService } from '../chuck-api.service';
   styleUrls: ['./container.component.scss'],
 })
 export class ContainerComponent implements OnInit {
-  categories$: Observable<string[]> = this.apiService.getCategories();
+  constructor(private authService: AuthService, private router: Router) {}
 
-  constructor(private apiService: ChuckApiService) {}
+  logout() {
+    this.authService.loggedIn = false;
+    localStorage.removeItem('loggedIn');
+    this.router.navigate(['login']);
+  }
 
   ngOnInit(): void {}
 }

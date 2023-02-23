@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ChuckApiService } from '../chuck-api.service';
-import { Joke } from '../chuck.model';
+import { Joke, Permission } from '../chuck.model';
 
 @Component({
   selector: 'app-random-joke',
@@ -11,7 +12,14 @@ import { Joke } from '../chuck.model';
 export class RandomJokeComponent implements OnInit {
   joke$: Observable<Joke> = this.api.getRandomJoke();
 
-  constructor(private api: ChuckApiService) {}
+  permissions: Permission | undefined;
 
-  ngOnInit(): void {}
+  constructor(
+    private api: ChuckApiService,
+    private activatedRoute: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.permissions = this.activatedRoute.snapshot.data['permissions'];
+  }
 }

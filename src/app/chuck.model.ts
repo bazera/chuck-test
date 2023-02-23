@@ -9,3 +9,7 @@ export interface QueryResult {
   result: Joke[];
   total: number;
 }
+
+export interface Permission {
+  canRandomJoke: boolean;
+}

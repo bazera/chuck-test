@@ -15,6 +15,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { SearchComponent } from './search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JokeListComponent } from './joke-list/joke-list.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { JokeListComponent } from './joke-list/joke-list.component';
     ContainerComponent,
     SearchComponent,
     JokeListComponent,
+    HomeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

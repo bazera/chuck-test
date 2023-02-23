@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccessGuard } from './access.guard';
 import { AnonymGuard } from './anonym.guard';
 import { AuthGuard } from './auth.guard';
 import { ContainerComponent } from './container/container.component';
@@ -41,6 +42,7 @@ const routes: Routes = [
         path: 'search',
         component: SearchComponent,
         canDeactivate: [SearchGuard],
+        canActivate: [AccessGuard],
       },
       {
         path: 'list',

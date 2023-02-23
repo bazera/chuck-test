@@ -1,3 +1,4 @@
+<button (click)="goToHome()">Home</button>
 <input type="text" [formControl]="search" placeholder="Search Joke" />
 <ng-container *ngIf="result$ | async as result">
   <h3>Total Jokes: {{ result.total }}</h3>

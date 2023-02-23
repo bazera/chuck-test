@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import {
   catchError,
@@ -25,7 +26,8 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private apiService: ChuckApiService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   private getEmptyResult() {
@@ -41,6 +43,10 @@ export class SearchComponent implements OnInit {
     this.apiService
       .saveJoke(joke)
       .subscribe(() => this.toastr.success('Joke has been added'));
+  }
+
+  goToHome() {
+    this.router.navigate(['']);
   }
 
   ngOnInit(): void {

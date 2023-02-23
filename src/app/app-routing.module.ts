@@ -9,6 +9,7 @@ import { JokeComponent } from './joke/joke.component';
 import { LoginComponent } from './login/login.component';
 import { PermissionResolver } from './permission.resolver';
 import { RandomJokeComponent } from './random-joke/random-joke.component';
+import { SearchGuard } from './search.guard';
 import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
       {
         path: 'search',
         component: SearchComponent,
+        canDeactivate: [SearchGuard],
       },
       {
         path: 'list',

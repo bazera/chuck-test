@@ -1,2 +1,3 @@
 <button (click)="logout()">Log Out</button>
+<span *ngIf="user">Logged in user: {{ user.name }}</span>
 <router-outlet></router-outlet>

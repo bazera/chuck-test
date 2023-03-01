@@ -10,12 +10,16 @@ import { ChuckApiService } from '../chuck-api.service';
   styleUrls: ['./container.component.scss'],
 })
 export class ContainerComponent implements OnInit {
+  get user() {
+    return this.authService.user;
+  }
+
   constructor(private authService: AuthService, private router: Router) {}
 
   logout() {
-    this.authService.loggedIn = false;
-    localStorage.removeItem('loggedIn');
-    this.router.navigate(['login']);
+    localStorage.removeItem('access_token');
+    this.authService.user = undefined;
+    this.router.navigate(['auth']);
   }
 
   ngOnInit(): void {}

@@ -7,12 +7,11 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AnonymGuard implements CanActivate {
+export class AuthGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(
@@ -23,8 +22,8 @@ export class AnonymGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (localStorage.getItem('loggedIn')) {
-      this.router.navigate(['']);
+    if (!localStorage.getItem('access_token')) {
+      this.router.navigate(['auth']);
       return false;
     }
 

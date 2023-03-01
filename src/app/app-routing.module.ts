@@ -1,22 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccessGuard } from './access.guard';
-import { AnonymGuard } from './anonym.guard';
-import { AuthGuard } from './auth.guard';
+import { AccessGuard, AnonymGuard, AuthGuard } from './guards';
 import { ContainerComponent } from './container/container.component';
 import { HomeComponent } from './home/home.component';
 import { JokeListComponent } from './joke-list/joke-list.component';
 import { JokeComponent } from './joke/joke.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { PermissionResolver } from './permission.resolver';
 import { RandomJokeComponent } from './random-joke/random-joke.component';
-import { SearchGuard } from './search.guard';
 import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   {
-    path: 'login',
-    component: LoginComponent,
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
     canActivate: [AnonymGuard],
   },
   {
@@ -41,7 +38,6 @@ const routes: Routes = [
       {
         path: 'search',
         component: SearchComponent,
-        canDeactivate: [SearchGuard],
         canActivate: [AccessGuard],
       },
       {

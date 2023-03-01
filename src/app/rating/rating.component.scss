@@ -1,0 +1,46 @@
+div {
+  display: inline-block;
+  cursor: pointer;
+
+  span {
+    font-size: 30px;
+    color: rgb(208, 208, 208);
+    transition: scale 0.1s, color 0.2s;
+
+    &.active {
+      color: rgb(247, 194, 0);
+      transition: color 0.2s;
+      scale: 1;
+    }
+
+    &:hover {
+      transition: scale 0.1s;
+    }
+
+    &.hovered {
+      color: rgb(216, 171, 5);
+
+      &.self {
+        scale: 1.2;
+      }
+    }
+  }
+
+  &.disabled {
+    cursor: default;
+
+    span {
+      color: rgb(225, 225, 225);
+
+      &.active {
+        color: rgb(230, 206, 116);
+      }
+
+      &.hovered {
+        &.self {
+          scale: 1;
+        }
+      }
+    }
+  }
+}

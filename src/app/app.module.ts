@@ -16,7 +16,7 @@ import { SearchComponent } from './search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JokeListComponent } from './joke-list/joke-list.component';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { LoginComponent } from './login/login.component';
     SearchComponent,
     JokeListComponent,
     HomeComponent,
-    LoginComponent,
+    RatingComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,11 +38,12 @@ import { LoginComponent } from './login/login.component';
     ToastrModule.forRoot(),
     ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {
       provide: API_BASE,
-      useValue: environment.apiBase,
+      useValue: environment.chuckApiBase,
     },
   ],
   bootstrap: [AppComponent],

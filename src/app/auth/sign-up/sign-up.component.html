@@ -1,0 +1,17 @@
+<form #form="ngForm" (ngSubmit)="register(form)">
+  <div>
+    <div>Name:</div>
+    <div><input type="text" placeholder="name" name="name" ngModel /></div>
+  </div>
+  <div>
+    <div>Email:</div>
+    <div><input type="email" placeholder="email" name="email" ngModel /></div>
+  </div>
+  <div>
+    <div>Password:</div>
+    <div>
+      <input type="password" placeholder="password" name="password" ngModel />
+    </div>
+  </div>
+  <button>Sign Up</button>
+</form>

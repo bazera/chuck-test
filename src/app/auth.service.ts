@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Auth } from './auth/auth.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  loggedIn = false;
-
-  currentUser = 'bazera';
+  user: Auth | undefined;
 
   constructor() {}
 }

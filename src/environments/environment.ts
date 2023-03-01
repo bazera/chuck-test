@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBase: 'https://api.chucknorris.io/jokes',
+  chuckApiBase: 'https://api.chucknorris.io/jokes',
+  apiBase: 'http://localhost:8000',
   jsonServerBase: 'http://localhost:3000',
 };
 

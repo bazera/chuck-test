@@ -1,0 +1,13 @@
+<div
+  *ngFor="let star of stars; let i = index"
+  [class.disabled]="isDisabled"
+  (mouseenter)="enter(i)"
+  (mouseleave)="leave()"
+>
+  <span
+    class="fa fa-star"
+    [ngClass]="getStarClass(i)"
+    [class.self]="isHovered(i)"
+    (click)="select(i)"
+  ></span>
+</div>

@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
 
   login(form: NgForm) {
     this.authApiService.signIn(form.value).subscribe((auth) => {
-      this.authService.user = auth;
       localStorage.setItem('access_token', auth.token);
       this.router.navigate(['']);
     });

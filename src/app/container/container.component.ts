@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { ChuckApiService } from '../chuck-api.service';
+import { Goal, GoalsApiService } from '../goals-api.service';
 
 @Component({
   selector: 'app-container',
@@ -10,17 +11,39 @@ import { ChuckApiService } from '../chuck-api.service';
   styleUrls: ['./container.component.scss'],
 })
 export class ContainerComponent implements OnInit {
-  get user() {
-    return this.authService.user;
-  }
+  goalText = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  goals$: Observable<Goal[]> | undefined;
+  currentUser$:
+    | Observable<{ id: string; name: string; email: string }>
+    | undefined;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private goalsApiService: GoalsApiService
+  ) {}
 
   logout() {
-    localStorage.removeItem('access_token');
-    this.authService.user = undefined;
-    this.router.navigate(['auth']);
+    this.authService.logout();
   }
 
-  ngOnInit(): void {}
+  addGoal() {
+    this.goalsApiService
+      .setGoal({ text: this.goalText })
+      .subscribe(() => this.loadGoals());
+  }
+
+  deleteGoal(id: string) {
+    this.goalsApiService.deleteGoal(id).subscribe(() => this.loadGoals());
+  }
+
+  loadGoals() {
+    this.goals$ = this.goalsApiService.getGoals();
+  }
+
+  ngOnInit(): void {
+    this.loadGoals();
+    this.currentUser$ = this.authService.getMe();
+  }
 }

@@ -18,7 +18,6 @@ export class SignUpComponent implements OnInit {
 
   register(form: NgForm) {
     this.authApiService.signUp(form.value).subscribe((auth) => {
-      this.authService.user = auth;
       localStorage.setItem('access_token', auth.token);
       this.router.navigate(['']);
     });

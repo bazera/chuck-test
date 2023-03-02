@@ -1,3 +1,15 @@
-<button (click)="logout()">Log Out</button>
-<span *ngIf="user">Logged in user: {{ user.name }}</span>
-<router-outlet></router-outlet>
+<div>
+  <button (click)="logout()">Log Out</button>
+  <span *ngIf="currentUser$ | async as currentUser"
+    >Logged in user: {{ currentUser.name }}</span
+  >
+</div>
+<div>
+  <ul>
+    <li *ngFor="let goal of goals$ | async">
+      {{ goal.text }}<button (click)="deleteGoal(goal._id)">X</button>
+    </li>
+  </ul>
+</div>
+<input type="text" [(ngModel)]="goalText" />
+<button (click)="addGoal()">Add Goal</button>

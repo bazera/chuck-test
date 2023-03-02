@@ -10,13 +10,10 @@ export class AuthApiService {
   constructor(private http: HttpClient) {}
 
   signUp(payload: { name: string; email: string; password: string }) {
-    return this.http.post<Auth>(`${environment.apiBase}/api/users`, payload);
+    return this.http.post<Auth>(`${environment.apiBase}/users`, payload);
   }
 
   signIn(payload: { email: string; password: string }) {
-    return this.http.post<Auth>(
-      `${environment.apiBase}/api/users/login`,
-      payload
-    );
+    return this.http.post<Auth>(`${environment.apiBase}/users/login`, payload);
   }
 }
